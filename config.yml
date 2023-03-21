@@ -4,8 +4,8 @@ ESP32URL: "http://192.168.x.x"
 
 # Signal config
 signal:
-  secretgroup: [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x]
-  mynumber: "+353xxxxxxxx"
+  secretGroup: [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x]
+  myNumber: "+353xxxxxxxx"
 
 # Discord config
 
