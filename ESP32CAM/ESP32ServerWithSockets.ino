@@ -33,12 +33,12 @@
 // ===========================
 // Enter your WiFi credentials
 // ===========================
-const char* ssid = "WIFISSID";
-const char* password = "WIFIPA55WORD";
+const char* ssid = "EatChicken!";
+const char* password = "madziakamil";
 
 
-const uint16_t port = 8091; //Bots socket port
-const char * host = "BOTS_IP_ADDRESS";
+const uint16_t port = 8091;
+const char * host = "192.168.1.103";
 WiFiClient client;
 int status = 0;
 
@@ -145,7 +145,8 @@ void setup() {
   Serial.print("Camera Ready! Use 'http://");
   Serial.print(WiFi.localIP());
   Serial.println("' to connect");
-
+  
+  sleep(5);
   client.connect(host, port);
   pinMode(15, INPUT_PULLUP);
 }
