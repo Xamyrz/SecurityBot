@@ -21,3 +21,18 @@ These commands are sent in a group chat with the bot
 1. `!start` to start looking for movement
 2. `!stop` to stop looking for movement
 3. `!last` to send the last 5 seconds of video
+
+## Cron job
+1. `crontab -e`
+2. `@reboot sleep 60;cd /home/pi/esp32bot;sh startup.sh`
+3. ```ssh
+    #!/bin/sh
+
+    # this is for keyboard
+    xkbset m
+    xmodmap -e "keycode 135 = Pointer_Button3"
+
+    cd /home/pi/esp32bot/
+
+    python main.py
+    ```
