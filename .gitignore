@@ -130,3 +130,6 @@ dmypy.json
 
 # config files
 config.yml
+
+# recordings directory
+recordings/
