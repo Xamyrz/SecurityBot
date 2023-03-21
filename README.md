@@ -1,5 +1,8 @@
 # Signal and Discord bot that works with ESP32CAM as security camera
 
+## Signal DBus setup
+https://github.com/Xamyrz/signal-cli-pi
+
 ## Installatian
 1. Clone this repository
 2. install requirements.txt with pip
