@@ -1,0 +1,14 @@
+socketPort: 8091
+ESP32URL: "http://192.168.x.x"
+#has to be absolute path to the directory due to signal dbus
+recordingsPath: "/home/pi/SecurityBot/recordings/"
+
+
+# Signal config
+signal:
+  secretGroup: [x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x, x]
+  myNumber: "+353xxxxxxxx"
+
+# Discord config
+discord:
+  token: "YOUR_TOKEN_HERE"
