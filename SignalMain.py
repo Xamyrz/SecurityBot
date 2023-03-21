@@ -181,44 +181,33 @@ def esp32camRun(finishEvent, sendLast, files, client):
 
             else:
                 start_recording = False
-                asyncio.run(sendMsg(client, "Error opening video stream, trying to Reconnecting to ESP", [], secGroup))
-                while not ret:
-                    cap.release()
-                    if(len(recordFrames) > 0):
-                        out = cv2.VideoWriter("recordings/"+file_name, cv2.VideoWriter_fourcc(*'mp4v'), len(recordFrames)/55, (xSize, ySize))
-                        for f in recordFrames:
-                            out.write(f)
-                        out.release()
-                        asyncio.run(sendMsg(client, "",[recordingsPath+file_name], secGroup))
-                        out = None
-                        recordFrames = []
-                    if lastFrames != []:
-                        last_time = datetime.now()
-                        last_time = last_time - timedelta(seconds=5)
-                        file_nameTwo = str(last_time.strftime("%d-%m-%Y--%H-%M-%S"))+"_Before.mp4"
-                        files.append(file_nameTwo)
-                        outTwo = cv2.VideoWriter("recordings/"+file_nameTwo, cv2.VideoWriter_fourcc(*'mp4v'), 20, (xSize, ySize))
-                        for f in lastFrames:
-                            outTwo.write(f)
-                        outTwo.release()
-                        asyncio.run(sendMsg(client, "", [recordingsPath+file_nameTwo], secGroup))
-                        lastFrames = []
-                    print("Error opening video stream")
-                    sendLast.set()
-                    try:
-                        cap = cv2.VideoCapture(URL + ":81/stream")
-                    except:
-                        asyncio.run(sendMsg(client, "Error opening video stream, ESP not connected?", [], secGroup))
-                        print("Error opening video stream")
+                asyncio.run(sendMsg(client, "Error opening video stream, trying to reconnect to ESP", [], secGroup))
+                cap.release()
+                if(len(recordFrames) > 0):
+                    out = cv2.VideoWriter("recordings/"+file_name, cv2.VideoWriter_fourcc(*'mp4v'), len(recordFrames)/55, (xSize, ySize))
+                    for f in recordFrames:
+                        out.write(f)
+                    out.release()
+                    asyncio.run(sendMsg(client, "",[recordingsPath+file_name], secGroup))
+                    out = None
+                    recordFrames = []
+                if lastFrames != []:
+                    last_time = datetime.now()
+                    last_time = last_time - timedelta(seconds=5)
+                    file_nameTwo = str(last_time.strftime("%d-%m-%Y--%H-%M-%S"))+"_Before.mp4"
+                    files.append(file_nameTwo)
+                    outTwo = cv2.VideoWriter("recordings/"+file_nameTwo, cv2.VideoWriter_fourcc(*'mp4v'), 20, (xSize, ySize))
+                    for f in lastFrames:
+                        outTwo.write(f)
+                    outTwo.release()
+                    asyncio.run(sendMsg(client, "", [recordingsPath+file_nameTwo], secGroup))
+                    lastFrames = []
+                print("Error opening video stream")
 
-                    set_resolution(URL, index=8)
-                    ret, frame = cap.read()
-                    if ret:
-                        asyncio.run(sendMsg(client, "Reconnected to ESP", [], secGroup))
-                        sendLast.clear()
-                        break
-                    if finishEvent.is_set():
-                        break
+                sendLast.clear()
+                esp32camRun(finishEvent, sendLast, files, client)
+
+                break
             key = cv2.waitKey(1)
 
             if key == ord('r'):
