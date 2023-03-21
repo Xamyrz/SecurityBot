@@ -1,0 +1,11 @@
+cv2
+numpy
+discord.ext
+python-dotenv
+discord.py
+threading
+dotenv
+python-socketio
+os
+pyyaml
+git+https://github.com/LEW21/pydbus.git
