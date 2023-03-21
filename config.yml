@@ -1,7 +1,7 @@
 socketPort: 8091
 ESP32URL: "http://192.168.x.x"
 #has to be absolute path to the directory due to signal dbus
-recordingsPath: "/home/pi/SecurityBot/recordings/"
+recordingsPath: "/home/pi/SecurityBot/recordings/t"
 
 
 # Signal config
